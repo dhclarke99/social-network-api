@@ -12,9 +12,9 @@ module.exports = {
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then((thoughts) =>
-        !thought
+        !thoughts
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : res.json(thought)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -74,7 +74,7 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: 'thought created but no user with this id!',
+              message: 'thought deleted but no user with this id!',
             })
           : res.json({ message: 'thought successfully deleted!' })
       )
