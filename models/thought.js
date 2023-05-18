@@ -39,6 +39,6 @@ thoughtSchema
 
 
 // Initialize our User model
-const Thought = model('Thought', thoughtSchema);
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
