@@ -1,6 +1,29 @@
 const { Schema, model } = require('mongoose');
-const Reaction = require('./reaction');
 
+
+const reactionSchema = new Schema({
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: new Schema.Types.ObjectId()
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxlength: 280
+    },
+    username: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  });
+  
+  
+  reactionSchema.path('createdAt').get(function (value) {
+  });
 // Schema to create thought model
 const thoughtSchema = new Schema(
     {
@@ -18,7 +41,7 @@ const thoughtSchema = new Schema(
             type: String,
             required: true,
         },
-        reactions: [Reaction]
+        reactions: [reactionSchema]
     },
     {
         // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
