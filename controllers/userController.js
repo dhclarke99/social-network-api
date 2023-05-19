@@ -1,3 +1,4 @@
+const { userInfo } = require('os');
 const { User, Thought } = require('../models');
 
 module.exports = {
@@ -35,5 +36,20 @@ module.exports = {
       .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } })
+    .then((user) =>
+    !user
+    ? res.status(404).json({message: 'No user with that ID'})
+    : res.json(user)
+    )
+  },
+
+  removeFriend(req, res) {
+
+  }
 };
 
