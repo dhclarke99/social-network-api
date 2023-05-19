@@ -22,7 +22,7 @@ router
 // /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtID/reactions').post(addReaction);
 
-// /api/applications/:applicationId/tags/:tagId
+// /api/thoughts/:thoughtId/reactions/:reactionId
 router.route('/:thoughtID/reactions/:reactionId').delete(removeReaction);
 
 module.exports = router;
