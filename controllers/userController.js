@@ -19,6 +19,22 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+
+  // update a single user
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $set: { email: req.body.email, username: req.body.username } },
+      { runValidators: true, new: true })
+      
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with that ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
   // create a new user
   createUser(req, res) {
     User.create(req.body)
